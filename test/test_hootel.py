@@ -1,11 +1,11 @@
 import time
+
+import allure
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-import allure
-import pytest
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class TestHootel(object):
@@ -15,7 +15,7 @@ class TestHootel(object):
         options.add_experimental_option("detach", True)
         options.add_argument('--headless')
         self.browser = webdriver.Chrome(options=options)
-        self.browser.set_window_size(1920,1080)
+        self.browser.set_window_size(1920, 1080)
         self.browser.get(URL)
 
     def teardown_method(self):
@@ -38,7 +38,7 @@ class TestHootel(object):
         submit_btn = self.browser.find_element(By.NAME, 'submit')
         submit_btn.click()
 
-        logout_btn = WebDriverWait(self.browser,10).until(EC.visibility_of_element_located((By.ID, 'logout-link')))
+        logout_btn = WebDriverWait(self.browser, 10).until(EC.visibility_of_element_located((By.ID, 'logout-link')))
 
         assert logout_btn.text == "Kilépés"
 
